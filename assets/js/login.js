@@ -120,7 +120,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     // Redirigir al panel de administración después de un breve delay
                     setTimeout(() => {
-                        window.location.href = 'dashboard.html';
+                        window.location.href = window.location.origin + '/pages/login/dashboard.html';
+                        console.log('Redirigiendo a dashboard...');
                     }, 1500);
                 } else {
                     // Login fallido
