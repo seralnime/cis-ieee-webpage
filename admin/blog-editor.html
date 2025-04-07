@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Editor de Blog - CIS IEEE - Universidad de La Sabana">
+    <title>Editor de Blog - CIS IEEE</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
+    <link rel="stylesheet" href="../assets/css/editor.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Editor WYSIWYG -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
+</head>
+<body class="dashboard-body">
+    <!-- Dashboard Container -->
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-header">
+                <img src="../assets/images/cis-logo.png" alt="Logo CIS IEEE">
+                <h3>CIS IEEE</h3>
+            </div>
+            
+            <div class="sidebar-user">
+                <div class="user-avatar">
+                    <img src="../assets/images/admin-avatar.jpg" alt="Admin">
+                </div>
+                <div class="user-info">
+                    <p class="user-name">Admin CIS</p>
+                    <p class="user-role">Administrador</p>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="../pages/login/dashboard.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="#">
+                            <i class="fas fa-file-alt"></i>
+                            <span>Entradas</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-tags"></i>
+                            <span>Categorías</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-comments"></i>
+                            <span>Comentarios</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-users"></i>
+                            <span>Usuarios</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-cog"></i>
+                            <span>Configuración</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="../index.html" class="view-site">
+                    <i class="fas fa-globe"></i>
+                    <span>Ver sitio</span>
+                </a>
+                <button id="logout-btn" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Cerrar sesión</span>
+                </button>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <!-- Topbar -->
+            <div class="dashboard-topbar">
+                <button class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <div class="topbar-actions">
+                    <div class="topbar-user">
+                        <img src="../assets/images/admin-avatar.jpg" alt="Admin">
+                        <span>Admin</span>
+                        <i class="fas fa-chevron-down"></i>
+                        
+                        <div class="user-dropdown">
+                            <a href="#profile"><i class="fas fa-user-circle"></i> Perfil</a>
+                            <a href="#settings"><i class="fas fa-cog"></i> Configuración</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" id="topbar-logout"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Content Wrapper -->
+            <div class="content-wrapper">
+                <div class="section-header">
+                    <h1>Editor de Blog</h1>
+                    <p>Crea o edita artículos para el blog</p>
+                </div>
+                
+                <div class="editor-container">
+                    <div class="glass-card editor-main">
+                        <div class="editor-form">
+                            <div class="form-group">
+                                <label for="post-title">Título del artículo</label>
+                                <input type="text" id="post-title" placeholder="Ingresa el título del artículo" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="post-excerpt">Extracto</label>
+                                <textarea id="post-excerpt" rows="3" placeholder="Breve descripción del artículo (se mostrará en las vistas previas)"></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Contenido</label>
+                                <div id="editor-content"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="editor-sidebar">
+                        <div class="glass-card sidebar-card">
+                            <div class="card-header">
+                                <h3>Publicación</h3>
+                            </div>
+                            
+                            <div class="card-body">
+                                <div class="post-status">
+                                    <p><i class="fas fa-info-circle"></i> Estado: <span>Borrador</span></p>
+                                    <p><i class="fas fa-eye"></i> Visibilidad: <span>Pública</span></p>
+                                    <div class="divider"></div>
+                                </div>
+                                
+                                <div class="form-actions">
+                                    <button class="btn secondary-btn preview-btn"><i class="fas fa-eye"></i> Vista previa</button>
+                                    <button class="btn primary-btn publish-btn"><i class="fas fa-paper-plane"></i> Publicar</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="glass-card sidebar-card">
+                            <div class="card-header">
+                                <h3>Categoría</h3>
+                            </div>
+                            
+                            <div class="card-body">
+                                <div class="categories-list">
+                                    <div class="category-item">
+                                        <input type="radio" name="category" id="cat-ia" value="ia" checked>
+                                        <label for="cat-ia">Inteligencia Artificial</label>
+                                    </div>
+                                    
+                                    <div class="category-item">
+                                        <input type="radio" name="category" id="cat-ml" value="ml">
+                                        <label for="cat-ml">Machine Learning</label>
+                                    </div>
+                                    
+                                    <div class="category-item">
+                                        <input type="radio" name="category" id="cat-computacion" value="computacion">
+                                        <label for="cat-computacion">Computación</label>
+                                    </div>
+                                    
+                                    <div class="category-item">
+                                        <input type="radio" name="category" id="cat-eventos" value="eventos">
+                                        <label for="cat-eventos">Eventos</label>
+                                    </div>
+                                </div>
+                                
+                                <div class="add-category">
+                                    <input type="text" placeholder="Nueva categoría">
+                                    <button class="btn secondary-btn">Añadir</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="glass-card sidebar-card">
+                            <div class="card-header">
+                                <h3>Imagen destacada</h3>
+                            </div>
+                            
+                            <div class="card-body">
+                                <div class="featured-image-preview">
+                                    <div class="no-image">
+                                        <i class="fas fa-image"></i>
+                                        <p>No hay imagen seleccionada</p>
+                                    </div>
+                                    <img src="" alt="Imagen destacada" style="display: none;">
+                                </div>
+                                
+                                <div class="form-actions">
+                                    <button class="btn secondary-btn upload-image-btn"><i class="fas fa-upload"></i> Subir imagen</button>
+                                    <button class="btn secondary-btn remove-image-btn" style="display: none;"><i class="fas fa-trash"></i> Eliminar</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="glass-card sidebar-card">
+                            <div class="card-header">
+                                <h3>Etiquetas</h3>
+                            </div>
+                            
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <input type="text" id="post-tags" placeholder="Añadir etiquetas (separadas por comas)">
+                                </div>
+                                
+                                <div class="tags-cloud">
+                                    <span class="tag-item">inteligencia artificial</span>
+                                    <span class="tag-item">tecnología</span>
+                                    <span class="tag-item">ieee</span>
+                                    <span class="tag-item">universidad</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Preview Modal -->
+    <div class="modal" id="preview-modal">
+        <div class="modal-content glass-card preview-content">
+            <div class="modal-header">
+                <h3>Vista previa</h3>
+                <button class="close-modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body preview-body">
+                <div class="preview-title">
+                    <h1>Título del artículo</h1>
+                </div>
+                <div class="preview-meta">
+                    <span class="preview-category">Categoría</span>
+                    <span class="preview-date">Abril 7, 2025</span>
+                </div>
+                <div class="preview-image">
+                    <img src="../assets/images/blog-placeholder.jpg" alt="Imagen del artículo">
+                </div>
+                <div class="preview-content-area">
+                    <!-- El contenido se insertará dinámicamente -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Publish Confirmation Modal -->
+    <div class="modal" id="publish-modal">
+        <div class="modal-content glass-card">
+            <div class="modal-header">
+                <h3>Publicar artículo</h3>
+                <button class="close-modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <p>¿Estás seguro de que deseas publicar este artículo?</p>
+                <div class="publish-options">
+                    <div class="publish-option">
+                        <input type="radio" name="publish-type" id="publish-now" value="now" checked>
+                        <label for="publish-now">Publicar ahora</label>
+                    </div>
+                    <div class="publish-option">
+                        <input type="radio" name="publish-type" id="publish-schedule" value="schedule">
+                        <label for="publish-schedule">Programar</label>
+                    </div>
+                    <div class="schedule-date" style="display: none;">
+                        <input type="datetime-local" id="schedule-datetime">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn secondary-btn cancel-publish">Cancelar</button>
+                <button class="btn primary-btn confirm-publish">Publicar</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Logout Confirmation Modal -->
+    <div class="modal" id="logout-modal">
+        <div class="modal-content glass-card">
+            <div class="modal-header">
+                <h3>Cerrar sesión</h3>
+                <button class="close-modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <p>¿Estás seguro de que deseas cerrar sesión?</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn secondary-btn cancel-logout">Cancelar</button>
+                <button class="btn primary-btn confirm-logout">Cerrar sesión</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js"></script>
+    <script src="../assets/js/dashboard.js"></script>
+    <script src="../assets/js/editor.js"></script>
+</body>
+</html>
