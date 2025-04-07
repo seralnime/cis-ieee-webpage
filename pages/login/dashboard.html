@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Panel de Administración - CIS IEEE - Universidad de La Sabana">
+    <title>Panel de Administración - CIS IEEE</title>
+    <link rel="stylesheet" href="../../assets/css/styles.css">
+    <link rel="stylesheet" href="../../assets/css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="dashboard-body">
+    <!-- Dashboard Container -->
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-header">
+                <img src="../../assets/images/cis-logo.png" alt="Logo CIS IEEE">
+                <h3>CIS IEEE</h3>
+            </div>
+            
+            <div class="sidebar-user">
+                <div class="user-avatar">
+                    <img src="../../assets/images/admin-avatar.jpg" alt="Admin">
+                </div>
+                <div class="user-info">
+                    <p class="user-name">Admin CIS</p>
+                    <p class="user-role">Administrador</p>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active">
+                        <a href="#dashboard">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#posts">
+                            <i class="fas fa-file-alt"></i>
+                            <span>Entradas</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#categories">
+                            <i class="fas fa-tags"></i>
+                            <span>Categorías</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#comments">
+                            <i class="fas fa-comments"></i>
+                            <span>Comentarios</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#users">
+                            <i class="fas fa-users"></i>
+                            <span>Usuarios</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#settings">
+                            <i class="fas fa-cog"></i>
+                            <span>Configuración</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="../../index.html" class="view-site">
+                    <i class="fas fa-globe"></i>
+                    <span>Ver sitio</span>
+                </a>
+                <button id="logout-btn" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Cerrar sesión</span>
+                </button>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <!-- Topbar -->
+            <div class="dashboard-topbar">
+                <button class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <div class="topbar-actions">
+                    <div class="search-box">
+                        <input type="text" placeholder="Buscar...">
+                        <button><i class="fas fa-search"></i></button>
+                    </div>
+                    
+                    <div class="topbar-notifications">
+                        <button class="notification-btn">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-badge">3</span>
+                        </button>
+                        
+                        <div class="notifications-dropdown">
+                            <div class="notification-header">
+                                <h4>Notificaciones</h4>
+                                <a href="#" class="mark-all-read">Marcar todas como leídas</a>
+                            </div>
+                            
+                            <div class="notification-item unread">
+                                <div class="notification-icon comment">
+                                    <i class="fas fa-comment"></i>
+                                </div>
+                                <div class="notification-content">
+                                    <p>Nuevo comentario en "Avances en IA Generativa"</p>
+                                    <span class="notification-time">Hace 5 minutos</span>
+                                </div>
+                            </div>
+                            
+                            <div class="notification-item unread">
+                                <div class="notification-icon user">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="notification-content">
+                                    <p>Nueva solicitud de acceso: Juan Pérez</p>
+                                    <span class="notification-time">Hace 1 hora</span>
+                                </div>
+                            </div>
+                            
+                            <div class="notification-item unread">
+                                <div class="notification-icon system">
+                                    <i class="fas fa-server"></i>
+                                </div>
+                                <div class="notification-content">
+                                    <p>Actualización de sistema completada</p>
+                                    <span class="notification-time">Hace 3 horas</span>
+                                </div>
+                            </div>
+                            
+                            <div class="notification-footer">
+                                <a href="#" class="view-all">Ver todas las notificaciones</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="topbar-user">
+                        <img src="../../assets/images/admin-avatar.jpg" alt="Admin">
+                        <span>Admin</span>
+                        <i class="fas fa-chevron-down"></i>
+                        
+                        <div class="user-dropdown">
+                            <a href="#profile"><i class="fas fa-user-circle"></i> Perfil</a>
+                            <a href="#settings"><i class="fas fa-cog"></i> Configuración</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" id="topbar-logout"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Content Wrapper -->
+            <div class="content-wrapper">
+                <!-- Dashboard Overview -->
+                <div class="dashboard-section active" id="dashboard-content">
+                    <div class="section-header">
+                        <h1>Dashboard</h1>
+                        <p>Bienvenido al panel de administración de CIS IEEE</p>
+                    </div>
+                    
+                    <!-- Stats Cards -->
+                    <div class="stats-grid">
+                        <div class="glass-card stats-card">
+                            <div class="stats-icon posts">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            <div class="stats-info">
+                                <h3>12</h3>
+                                <p>Entradas</p>
+                            </div>
+                            <div class="stats-change">
+                                <span class="positive"><i class="fas fa-arrow-up"></i> 8%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="glass-card stats-card">
+                            <div class="stats-icon comments">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <div class="stats-info">
+                                <h3>48</h3>
+                                <p>Comentarios</p>
+                            </div>
+                            <div class="stats-change">
+                                <span class="positive"><i class="fas fa-arrow-up"></i> 12%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="glass-card stats-card">
+                            <div class="stats-icon users">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="stats-info">
+                                <h3>25</h3>
+                                <p>Usuarios</p>
+                            </div>
+                            <div class="stats-change">
+                                <span class="positive"><i class="fas fa-arrow-up"></i> 5%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="glass-card stats-card">
+                            <div class="stats-icon views">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <div class="stats-info">
+                                <h3>1,254</h3>
+                                <p>Visitas</p>
+                            </div>
+                            <div class="stats-change">
+                                <span class="positive"><i class="fas fa-arrow-up"></i> 18%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Recent Activity -->
+                    <div class="dashboard-row">
+                        <div class="glass-card recent-activity">
+                            <div class="card-header">
+                                <h2>Actividad reciente</h2>
+                                <a href="#" class="view-all-link">Ver todo</a>
+                            </div>
+                            
+                            <div class="activity-list">
+                                <div class="activity-item">
+                                    <div class="activity-icon comment">
+                                        <i class="fas fa-comment"></i>
+                                    </div>
+                                    <div class="activity-content">
+                                        <p>María García comentó en <a href="#">"Aplicaciones de ML en Medicina"</a></p>
+                                        <span class="activity-time">Hace 10 minutos</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="activity-item">
+                                    <div class="activity-icon edit">
+                                        <i class="fas fa-edit"></i>
+                                    </div>
+                                    <div class="activity-content">
+                                        <p>Admin actualizó la entrada <a href="#">"Avances recientes en Computación Cuántica"</a></p>
+                                        <span class="activity-time">Hace 2 horas</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="activity-item">
+                                    <div class="activity-icon new">
+                                        <i class="fas fa-plus"></i>
+                                    </div>
+                                    <div class="activity-content">
+                                        <p>Admin creó una nueva entrada: <a href="#">"Ética y Regulación en IA"</a></p>
+                                        <span class="activity-time">Hace 5 horas</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="activity-item">
+                                    <div class="activity-icon user">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                    <div class="activity-content">
+                                        <p>Carlos Rodríguez se registró como nuevo usuario</p>
+                                        <span class="activity-time">Hace 1 día</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="activity-item">
+                                    <div class="activity-icon delete">
+                                        <i class="fas fa-trash"></i>
+                                    </div>
+                                    <div class="activity-content">
+                                        <p>Admin eliminó un comentario en <a href="#">"Hackathon Internacional IEEE 2025"</a></p>
+                                        <span class="activity-time">Hace 1 día</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Quick Draft -->
+                        <div class="glass-card quick-draft">
+                            <div class="card-header">
+                                <h2>Borrador rápido</h2>
+                            </div>
+                            
+                            <form class="draft-form">
+                                <div class="form-group">
+                                    <input type="text" placeholder="Título" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <textarea placeholder="Contenido..." rows="6" required></textarea>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <select required>
+                                        <option value="" disabled selected>Seleccionar categoría</option>
+                                        <option value="ia">Inteligencia Artificial</option>
+                                        <option value="ml">Machine Learning</option>
+                                        <option value="computacion">Computación</option>
+                                        <option value="eventos">Eventos</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-actions">
+                                    <button type="submit" class="btn primary-btn">Guardar borrador</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <!-- Recent Comments -->
+                    <div class="glass-card recent-comments">
+                        <div class="card-header">
+                            <h2>Comentarios recientes</h2>
+                            <a href="#" class="view-all-link">Ver todos</a>
+                        </div>
+                        
+                        <div class="comments-table-wrapper">
+                            <table class="comments-table">
+                                <thead>
+                                    <tr>
+                                        <th>Usuario</th>
+                                        <th>Comentario</th>
+                                        <th>Entrada</th>
+                                        <th>Fecha</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="comment-author">
+                                            <div class="author-avatar">
+                                                <img src="../../assets/images/user-1.jpg" alt="María García">
+                                            </div>
+                                            <span>María García</span>
+                                        </td>
+                                        <td class="comment-excerpt">Excelente artículo. Me encantó la explicación sobre los últimos avances en ML para diagnóstico de imágenes médicas.</td>
+                                        <td>Aplicaciones de ML en Medicina</td>
+                                        <td>Abril 7, 2025</td>
+                                        <td class="comment-actions">
+                                            <button class="action-btn view"><i class="fas fa-eye"></i></button>
+                                            <button class="action-btn approve"><i class="fas fa-check"></i></button>
+                                            <button class="action-btn spam"><i class="fas fa-ban"></i></button>
+                                            <button class="action-btn trash"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="comment-author">
+                                            <div class="author-avatar">
+                                                <img src="../../assets/images/user-2.jpg" alt="Carlos Rodríguez">
+                                            </div>
+                                            <span>Carlos Rodríguez</span>
+                                        </td>
+                                        <td class="comment-excerpt">¿Cuándo será el próximo hackathon? Me gustaría participar con mi equipo de la universidad.</td>
+                                        <td>Hackathon Internacional IEEE 2025</td>
+                                        <td>Abril 6, 2025</td>
+                                        <td class="comment-actions">
+                                            <button class="action-btn view"><i class="fas fa-eye"></i></button>
+                                            <button class="action-btn approve"><i class="fas fa-check"></i></button>
+                                            <button class="action-btn spam"><i class="fas fa-ban"></i></button>
+                                            <button class="action-btn trash"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="comment-author">
+                                            <div class="author-avatar">
+                                                <img src="../../assets/images/user-3.jpg" alt="Ana Martínez">
+                                            </div>
+                                            <span>Ana Martínez</span>
+                                        </td>
+                                        <td class="comment-excerpt">Muy interesante el análisis sobre las implicaciones éticas de la IA. Creo que es un tema que deberíamos discutir más a fondo.</td>
+                                        <td>Ética y Regulación en IA</td>
+                                        <td>Abril 5, 2025</td>
+                                        <td class="comment-actions">
+                                            <button class="action-btn view"><i class="fas fa-eye"></i></button>
+                                            <button class="action-btn approve"><i class="fas fa-check"></i></button>
+                                            <button class="action-btn spam"><i class="fas fa-ban"></i></button>
+                                            <button class="action-btn trash"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Posts Section (hidden by default) -->
+                <div class="dashboard-section" id="posts-content">
+                    <div class="section-header">
+                        <h1>Entradas</h1>
+                        <p>Gestiona las entradas del blog</p>
+                    </div>
+                    
+                    <div class="section-actions">
+                        <a href="../../admin/blog-editor.html" class="btn primary-btn"><i class="fas fa-plus"></i> Nueva entrada</a>
+                    </div>
+                    
+                    <div class="glass-card">
+                        <div class="card-header">
+                            <h2>Todas las entradas</h2>
+                            <div class="table-filters">
+                                <select class="filter-status">
+                                    <option value="all">Todos los estados</option>
+                                    <option value="published">Publicados</option>
+                                    <option value="draft">Borradores</option>
+                                    <option value="scheduled">Programados</option>
+                                </select>
+                                <select class="filter-category">
+                                    <option value="all">Todas las categorías</option>
+                                    <option value="ia">Inteligencia Artificial</option>
+                                    <option value="ml">Machine Learning</option>
+                                    <option value="computacion">Computación</option>
+                                    <option value="eventos">Eventos</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="table-wrapper">
+                            <table class="posts-table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <input type="checkbox" class="select-all-checkbox">
+                                        </th>
+                                        <th>Título</th>
+                                        <th>Autor</th>
+                                        <th>Categoría</th>
+                                        <th>Fecha</th>
+                                        <th>Estado</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" class="row-checkbox">
+                                        </td>
+                                        <td class="post-title">
+                                            <div class="post-thumbnail">
+                                                <img src="../../assets/images/blog-1.jpg" alt="Avances en IA Generativa">
+                                            </div>
+                                            <div>
+                                                <a href="#" class="title-link">Avances en IA Generativa</a>
+                                                <div class="post-meta">
+                                                    <span>248 vistas</span>
+                                                    <span>6 comentarios</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>Admin</td>
+                                        <td><span class="category-badge ia">Inteligencia Artificial</span></td>
+                                        <td>Abril 7, 2025</td>
+                                        <td><span class="status-badge published">Publicado</span></td>
+                                        <td class="post-actions">
+                                            <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                            <button class="action-btn view"><i class="fas fa-eye"></i></button>
+                                            <button class="action-btn trash"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" class="row-checkbox">
+                                        </td>
+                                        <td class="post-title">
+                                            <div class="post-thumbnail">
+                                                <img src="../../assets/images/blog-2.jpg" alt="Machine Learning en Medicina">
+                                            </div>
+                                            <div>
+                                                <a href="#" class="title-link">Aplicaciones de ML en Medicina</a>
+                                                <div class="post-meta">
+                                                    <span>183 vistas</span>
+                                                    <span>4 comentarios</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>Admin</td>
+                                        <td><span class="category-badge ml">Machine Learning</span></td>
+                                        <td>Abril 3, 2025</td>
+                                        <td><span class="status-badge published">Publicado</span></td>
+                                        <td class="post-actions">
+                                            <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                            <button class="action-btn view"><i class="fas fa-eye"></i></button>
+                                            <button class="action-btn trash"><i class="fas fa-trash"></i></button>
+                                        </td>
+
+
+
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" class="row-checkbox">
+                                        </td>
+                                        <td class="post-title">
+                                            <div class="post-thumbnail">
+                                                <img src="../../assets/images/blog-3.jpg" alt="Ética en IA">
+                                            </div>
+                                            <div>
+                                                <a href="#" class="title-link">Ética y Regulación en IA</a>
+                                                <div class="post-meta">
+                                                    <span>97 vistas</span>
+                                                    <span>2 comentarios</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>Admin</td>
+                                        <td><span class="category-badge ia">Inteligencia Artificial</span></td>
+                                        <td>Marzo 28, 2025</td>
+                                        <td><span class="status-badge published">Publicado</span></td>
+                                        <td class="post-actions">
+                                            <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                            <button class="action-btn view"><i class="fas fa-eye"></i></button>
+                                            <button class="action-btn trash"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" class="row-checkbox">
+                                        </td>
+                                        <td class="post-title">
+                                            <div class="post-thumbnail">
+                                                <img src="../../assets/images/blog-draft.jpg" alt="Tendencias en IA 2025">
+                                            </div>
+                                            <div>
+                                                <a href="#" class="title-link">Tendencias en IA para 2025</a>
+                                                <div class="post-meta">
+                                                    <span>No publicado</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>Admin</td>
+                                        <td><span class="category-badge ia">Inteligencia Artificial</span></td>
+                                        <td>-</td>
+                                        <td><span class="status-badge draft">Borrador</span></td>
+                                        <td class="post-actions">
+                                            <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                            <button class="action-btn view"><i class="fas fa-eye"></i></button>
+                                            <button class="action-btn trash"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="table-pagination">
+                            <button class="pagination-btn active">1</button>
+                            <button class="pagination-btn">2</button>
+                            <button class="pagination-btn">3</button>
+                            <button class="pagination-btn">...</button>
+                            <button class="pagination-btn">5</button>
+                            <button class="pagination-btn next"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Placeholder para otras secciones -->
+                <div class="dashboard-section" id="categories-content">
+                    <div class="section-header">
+                        <h1>Categorías</h1>
+                        <p>Gestiona las categorías del blog</p>
+                    </div>
+                    <div class="glass-card placeholder-content">
+                        <p>Contenido de categorías en desarrollo</p>
+                    </div>
+                </div>
+                
+                <div class="dashboard-section" id="comments-content">
+                    <div class="section-header">
+                        <h1>Comentarios</h1>
+                        <p>Gestiona los comentarios del blog</p>
+                    </div>
+                    <div class="glass-card placeholder-content">
+                        <p>Contenido de comentarios en desarrollo</p>
+                    </div>
+                </div>
+                
+                <div class="dashboard-section" id="users-content">
+                    <div class="section-header">
+                        <h1>Usuarios</h1>
+                        <p>Gestiona los usuarios del sistema</p>
+                    </div>
+                    <div class="glass-card placeholder-content">
+                        <p>Contenido de usuarios en desarrollo</p>
+                    </div>
+                </div>
+                
+                <div class="dashboard-section" id="settings-content">
+                    <div class="section-header">
+                        <h1>Configuración</h1>
+                        <p>Administra la configuración del sistema</p>
+                    </div>
+                    <div class="glass-card placeholder-content">
+                        <p>Contenido de configuración en desarrollo</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Logout Confirmation Modal -->
+    <div class="modal" id="logout-modal">
+        <div class="modal-content glass-card">
+            <div class="modal-header">
+                <h3>Cerrar sesión</h3>
+                <button class="close-modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <p>¿Estás seguro de que deseas cerrar sesión?</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn secondary-btn cancel-logout">Cancelar</button>
+                <button class="btn primary-btn confirm-logout">Cerrar sesión</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="../../assets/js/dashboard.js"></script>
+</body>
+</html>
