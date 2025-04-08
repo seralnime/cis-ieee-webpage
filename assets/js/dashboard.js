@@ -322,11 +322,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
             
-            console.log('Guardando borrador:', { title, content, category });
-            
-            // En una implementación real, aquí guardarías el borrador
-            // Para esta demo, simulamos una operación exitosa
-            
             // Mostrar mensaje de éxito
             const successMessage = document.createElement('div');
             successMessage.classList.add('success-message');

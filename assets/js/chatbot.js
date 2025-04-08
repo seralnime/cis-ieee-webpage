@@ -240,7 +240,6 @@ setTimeout(() => {
     if (chatbotContainer && !chatbotContainer.classList.contains('active')) {
         const notification = document.createElement('div');
         notification.classList.add('chatbot-notification');
-        notification.textContent = '¿Tienes alguna pregunta?';
         
         if (chatbotToggle) {
             chatbotToggle.appendChild(notification);
