@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
         confirmLogout.addEventListener('click', () => {
             // En una implementación real, aquí cerrarías la sesión
             // Para esta demo, simplemente redireccionamos a la página de login
-            window.location.href = 'index.html';
+            window.location.href = '/index.html';
         });
     }
     
