@@ -706,6 +706,11 @@ p {
 .animated {
     animation: fadeIn 1s ease forwards;
 }
+.hero-background {
+    animation: fadeIn 1.5s ease forwards;
+    position: absolute; /* o relative, fixed, sticky según el caso */
+    z-index: 0;
+}
 
 /* === RESPONSIVE === */
 @media (max-width: 1024px) {
